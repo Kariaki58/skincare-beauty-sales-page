@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | LuxeGlow</title>
+    <style>
+        :root {
+            --primary: #D2B48C; /* light brown */
+            --secondary: #000000;
+            --light: #FFFFFF;
+            --gray: #f5f5f5;
+            --dark-gray: #777;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Avenir', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: var(--gray);
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        /* Progress Steps */
+        .progress-steps {
+            display: flex;
+            justify-content: center;
+            margin: 30px auto;
+            max-width: 800px;
+            position: relative;
+        }
+        
+        .progress-steps:before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            width: 33.33%;
+        }
+        
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #ddd;
+            color: var(--secondary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .step.active .step-number {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .step.completed .step-number {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .step.completed .step-number:after {
+            content: '✓';
+        }
+        
+        .step-label {
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+        
+        .step.active .step-label {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        /* Checkout Container */
+        .checkout-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+        
+        @media (min-width: 992px) {
+            .checkout-container {
+                flex-direction: row;
+                gap: 40px;
+            }
+        }
+        
+        /* Checkout Form */
+        .checkout-form {
+            flex: 1;
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-title {
+            font-size: 24px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            color: var(--secondary);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(210,180,140,0.2);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        /* Order Summary */
+        .order-summary {
+            width: 100%;
+            margin-top: 30px;
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        @media (min-width: 992px) {
+            .order-summary {
+                width: 350px;
+                margin-top: 0;
+            }
+        }
+        
+        .summary-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .product-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .product-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-details {
+            flex: 1;
+        }
+        
+        .product-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: var(--gray);
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            margin: 0 5px;
+            padding: 5px;
+        }
+        
+        .summary-totals {
+            margin-top: 20px;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .total-row:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        /* Payment Methods */
+        .payment-methods {
+            margin-top: 30px;
+        }
+        
+        .payment-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .payment-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-option {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-option:hover {
+            border-color: var(--primary);
+        }
+        
+        .payment-option.active {
+            border-color: var(--primary);
+            background-color: rgba(210,180,140,0.1);
+        }
+        
+        .payment-option img {
+            height: 30px;
+            margin-bottom: 10px;
+        }
+        
+        .payment-option-name {
+            font-size: 14px;
+        }
+        
+        /* Pay Button */
+        .pay-btn {
+            width: 100%;
+            background-color: var(--primary);
+            color: var(--secondary);
+            border: none;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .pay-btn:hover {
+            background-color: #c5a06b;
+            transform: translateY(-2px);
+        }
+        
+        .pay-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Secure Checkout */
+        .secure-checkout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+        
+        .secure-checkout svg {
+            margin-right: 8px;
+            fill: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--light);
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .footer-logo span {
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: #aaa;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Luxe<span>Glow</span></div>
+    </header>
+    
+    <div class="progress-steps">
+        <div class="step completed">
+            <div class="step-number">1</div>
+            <div class="step-label">Cart</div>
+        </div>
+        <div class="step active">
+            <div class="step-number">2</div>
+            <div class="step-label">Information</div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-label">Payment</div>
+        </div>
+    </div>
+    
+    <div class="checkout-container">
+        <div class="checkout-form">
+            <h2 class="form-title">Shipping Information</h2>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="your@email.com">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" placeholder="Last Name">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="Street Address">
+            </div>
+            
+            <div class="form-group">
+                <label for="apartment">Apartment, Suite, etc. (Optional)</label>
+                <input type="text" id="apartment" placeholder="Apt 123">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" placeholder="City">
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country">
+                        <option value="">Select Country</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="state">State/Province</label>
+                    <input type="text" id="state" placeholder="State/Province">
+                </div>
+                <div class="form-group">
+                    <label for="zip">ZIP/Postal Code</label>
+                    <input type="text" id="zip" placeholder="ZIP/Postal Code">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" placeholder="Phone Number">
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="save-info">
+                <label for="save-info">Save this information for next time</label>
+            </div>
+            
+            <h2 class="form-title" style="margin-top: 40px;">Shipping Method</h2>
+            
+            <div class="form-group">
+                <div class="checkbox-group" style="margin-bottom: 10px;">
+                    <input type="radio" id="standard-shipping" name="shipping" checked>
+                    <label for="standard-shipping">Standard Shipping (Free) - 5-7 business days</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="radio" id="express-shipping" name="shipping">
+                    <label for="express-shipping">Express Shipping ($9.99) - 2-3 business days</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="order-summary">
+            <h3 class="summary-title">Your Order</h3>
+            
+            <div class="product-item">
+                <div class="product-image">
+                    <img src="./image/image-2.jpeg" alt="LuxeGlow Serum">
+                </div>
+                <div class="product-details">
+                    <div class="product-name">LuxeGlow Anti-Aging Serum</div>
+                    <div class="product-price">$89.00</div>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn">-</button>
+                        <input type="text" class="quantity-input" value="1">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="summary-totals">
+                <div class="total-row">
+                    <span>Subtotal</span>
+                    <span>$89.00</span>
+                </div>
+                <div class="total-row">
+                    <span>Shipping</span>
+                    <span>Free</span>
+                </div>
+                <div class="total-row">
+                    <span>Tax</span>
+                    <span>$7.12</span>
+                </div>
+                <div class="total-row">
+                    <span>Total</span>
+                    <span>$96.12</span>
+                </div>
+            </div>
+            
+            <div class="payment-methods">
+                <h4 class="payment-title">Payment Method</h4>
+                
+                <div class="payment-options">
+                    <div class="payment-option active">
+                        <img src="./icons/card.svg" alt="Credit Card">
+                        <div class="payment-option-name">Card</div>
+                    </div>
+                    <div class="payment-option">
+                        
+                        <img src="./icons/paypal.svg" alt="PayPal">
+                        <div class="payment-option-name">PayPal</div>
+                    </div>
+                    <div class="payment-option">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="Apple Pay">
+                        <div class="payment-option-name">Apple Pay</div>
+                    </div>
+                </div>
+                
+                <button class="pay-btn">Pay Now</button>
+                
+                <div class="secure-checkout">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11V11.99z"/>
+                    </svg>
+                    Secure Checkout
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-logo">Luxe<span>Glow</span></div>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Shipping Policy</a>
+            <a href="#">Returns</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <div class="copyright">
+            &copy; 2023 LuxeGlow Skincare. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // Quantity selector
+        const quantityInput = document.querySelector('.quantity-input');
+        const minusBtn = document.querySelector('.quantity-btn:first-child');
+        const plusBtn = document.querySelector('.quantity-btn:last-child');
+        
+        minusBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+                updateTotals();
+            }
+        });
+        
+        plusBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            quantityInput.value = value + 1;
+            updateTotals();
+        });
+        
+        quantityInput.addEventListener('change', () => {
+            let value = parseInt(quantityInput.value);
+            if (isNaN(value) || value < 1) {
+                quantityInput.value = 1;
+            }
+            updateTotals();
+        });
+        
+        // Update order totals
+        function updateTotals() {
+            const quantity = parseInt(quantityInput.value);
+            const subtotal = (89 * quantity).toFixed(2);
+            const tax = (89 * quantity * 0.08).toFixed(2);
+            const total = (parseFloat(subtotal) + parseFloat(tax)).toFixed(2);
+            
+            document.querySelector('.summary-totals .total-row:nth-child(1) span:last-child').textContent = `$${subtotal}`;
+            document.querySelector('.summary-totals .total-row:nth-child(3) span:last-child').textContent = `$${tax}`;
+            document.querySelector('.summary-totals .total-row:last-child span:last-child').textContent = `$${total}`;
+        }
+        
+        // Payment method selection
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                paymentOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+            });
+        });
+        
+        // Shipping method selection
+        const shippingOptions = document.querySelectorAll('input[name="shipping"]');
+        
+        shippingOptions.forEach(option => {
+            option.addEventListener('change', () => {
+                const shippingCost = option.id === 'express-shipping' ? 9.99 : 0;
+                const shippingText = option.id === 'express-shipping' ? '$9.99' : 'Free';
+                
+                document.querySelector('.summary-totals .total-row:nth-child(2) span:last-child').textContent = shippingText;
+                
+                const subtotal = parseFloat(document.querySelector('.summary-totals .total-row:nth-child(1) span:last-child').textContent.replace('$', ''));
+                const tax = parseFloat(document.querySelector('.summary-totals .total-row:nth-child(3) span:last-child').textContent.replace('$', ''));
+                const total = (subtotal + tax + shippingCost).toFixed(2);
+                
+                document.querySelector('.summary-totals .total-row:last-child span:last-child').textContent = `$${total}`;
+            });
+        });
+        
+        // Pay button
+        const payBtn = document.querySelector('.pay-btn');
+        
+        payBtn.addEventListener('click', () => {
+            // In a real implementation, this would process the payment
+            alert('Payment processed successfully! Thank you for your purchase.');
+        });
+    </script>
+</body>
+</html>

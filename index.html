@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeGlow - Revolutionary Anti-Aging Serum</title>
+    <style>
+        :root {
+            --primary: #D2B48C; /* light brown */
+            --secondary: #000000;
+            --light: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Avenir', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 0;
+            background-color: var(--light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            min-height: auto;
+            padding: 30px 5%;
+            background: linear-gradient(135deg, var(--light) 0%, #f9f9f9 100%);
+        }
+        
+        .hero-content {
+            order: 2;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .hero h1 span:after {
+            content: '';
+            position: absolute;
+            bottom: 3px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background-color: var(--primary);
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .hero p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            max-width: 100%;
+        }
+        
+        .hero-image {
+            order: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .slider-container {
+            width: 100%;
+            max-width: 350px;
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .slider {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .slide {
+            width: 33.33%;
+            height: 100%;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+        
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            margin: 0 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .slider-dot.active {
+            background-color: var(--primary);
+        }
+        
+        /* Buy Button */
+        .buy-btn {
+            background-color: var(--primary);
+            color: rgb(36, 30, 30);
+            border: none;
+            padding: 20px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(210,180,140,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin: 0 auto;
+            width: fit-content;
+        }
+        
+        .buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(210,180,140,0.6);
+        }
+        
+        .buy-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 99;
+            display: none;
+            animation: pulse 2s infinite;
+            width: 90%;
+            max-width: 300px;
+            text-align: center;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(210,180,140,0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(210,180,140,0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(210,180,140,0);
+            }
+        }
+        
+        /* Problem Section */
+        .problem-section {
+            padding: 50px 5%;
+            background-color: #f5f5f5;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .problem-content {
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .problem-text {
+            order: 2;
+            padding-right: 0;
+        }
+        
+        .problem-text h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .problem-text ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .problem-text li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .problem-text li:before {
+            content: '✖';
+            position: absolute;
+            left: 0;
+            color: #ff4444;
+            font-weight: bold;
+        }
+        
+        .problem-image {
+            order: 1;
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+            height: 450px; /* Or set a specific height like 500px */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        
+        /* Solution Section */
+        .solution-section {
+            padding: 50px 5%;
+            background-color: var(--light);
+        }
+        
+        .solution-content {
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .solution-text {
+            order: 2;
+            padding-left: 0;
+            margin-top: 30px;
+        }
+        
+        .solution-text h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .solution-text ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .solution-text li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .solution-text li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .solution-image {
+            order: 1;
+            text-align: center;
+        }
+        
+        .solution-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Comparison Section */
+        .comparison-section {
+            padding: 50px 5%;
+            background-color: #f5f5f5;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 100%;
+            margin: 30px auto 0;
+        }
+        
+        .comparison-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+            align-items: center;
+        }
+        
+        .comparison-row div {
+            text-align: center;
+            padding: 0 10px;
+        }
+        
+        .others {
+            color: #777;
+        }
+        
+        .us {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .comparison-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            padding: 50px 5%;
+            background-color: #f5f5f5;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 100%;
+            margin: 30px auto 0;
+        }
+        
+        .benefit-card {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .benefit-card h3 {
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        
+        /* Rotated Images Section */
+        .rotated-images {
+            padding: 50px 5%;
+            background-color: var(--light);
+            overflow: hidden;
+        }
+        
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .rotated-image {
+            width: 250px;
+            height: 250px;
+            transform: rotate(0deg);
+            transition: all 0.3s;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .rotated-image:hover {
+            transform: scale(1.05);
+            z-index: 2;
+        }
+        
+        .rotated-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 50px 5%;
+            background-color: #f5f5f5;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 100%;
+            margin: 30px auto 0;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .testimonial-text:before {
+            content: '"';
+            font-size: 50px;
+            position: absolute;
+            top: -15px;
+            left: -10px;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 12px;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 3px;
+            font-size: 16px;
+        }
+        
+        .author-info p {
+            font-size: 13px;
+            color: #777;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 60px 5%;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, #e6c9a1 100%);
+            color: var(--secondary);
+        }
+        
+        .cta-section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .cta-section p {
+            font-size: 16px;
+            max-width: 100%;
+            margin: 0 auto 30px;
+        }
+        
+        /* Guarantee Section */
+        .guarantee {
+            padding: 50px 5%;
+            background-color: var(--light);
+            text-align: center;
+        }
+        
+        .guarantee-badge {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .guarantee p {
+            max-width: 100%;
+            margin: 0 auto;
+            font-size: 16px;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 50px 5%;
+            background-color: #f5f5f5;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            display: none;
+            padding-top: 8px;
+            font-size: 15px;
+        }
+        
+        .faq-question:after {
+            content: '+';
+            font-size: 22px;
+            color: var(--primary);
+        }
+        
+        .faq-item.active .faq-question:after {
+            content: '-';
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--light);
+            padding: 30px 5%;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .footer-logo span {
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: #aaa;
+            font-size: 12px;
+        }
+        
+        /* Desktop Styles */
+        @media (min-width: 768px) {
+            .hero {
+                flex-direction: row;
+                min-height: 80vh;
+                padding: 60px 5%;
+            }
+            
+            .hero-content {
+                order: 1;
+                flex: 1;
+                text-align: left;
+                padding-right: 40px;
+                margin-top: 0;
+            }
+            
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .hero p {
+                max-width: 600px;
+                margin-left: 0;
+            }
+            
+            .hero-image {
+                order: 2;
+                flex: 1;
+                margin-bottom: 0;
+            }
+            
+            .slider-container {
+                max-width: 450px;
+                height: 450px;
+            }
+            
+            .buy-btn {
+                margin-left: 0;
+            }
+            
+            .problem-content, .solution-content {
+                flex-direction: row;
+                max-width: 1200px;
+            }
+            
+            .problem-text {
+                order: 1;
+                flex: 1;
+                padding-right: 40px;
+                text-align: left;
+            }
+            
+            .problem-text h3, .solution-text h3 {
+                text-align: left;
+            }
+            
+            .problem-image {
+                order: 2;
+                flex: 1;
+                margin-bottom: 0;
+            }
+            
+            .solution-text {
+                order: 2;
+                flex: 1;
+                padding-left: 40px;
+                margin-top: 0;
+                text-align: left;
+            }
+            
+            .solution-image {
+                order: 1;
+                flex: 1;
+            }
+            
+            .comparison-grid, .benefits-grid {
+                grid-template-columns: 1fr;
+                max-width: 800px;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .image-container {
+                flex-direction: row;
+                justify-content: center;
+                gap: 40px;
+            }
+            
+            .rotated-image {
+                transform: rotate(10deg);
+            }
+            
+            .rotated-image:nth-child(2) {
+                transform: rotate(-10deg);
+                margin-top: 40px;
+            }
+            
+            .rotated-image:nth-child(3) {
+                transform: rotate(5deg);
+            }
+            
+            .rotated-image:hover {
+                transform: rotate(0deg) scale(1.05);
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-links {
+                grid-template-columns: repeat(6, auto);
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Luxe<span>Glow</span></div>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Erase Years From Your Face <span>Overnight</span></h1>
+            <p>Our clinically-proven anti-aging serum delivers visible results in just 28 days. Experience firmer, smoother, younger-looking skin without expensive procedures or harmful chemicals.</p>
+            <button class="buy-btn">GET YOURS</button>
+        </div>
+        <div class="hero-image">
+            <div class="slider-container">
+                <div class="slider">
+                    <div class="slide">
+                        <img src="./image/image-2.jpeg" alt="LuxeGlow Serum Bottle">
+                    </div>
+                    <div class="slide">
+                        <img src="./image/image-1.png" alt="Woman applying LuxeGlow Serum">
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <button class="buy-btn floating-btn">GET YOURS</button>
+    
+    <section class="problem-section">
+        <h2 class="section-title">The Aging Problem No One Talks About</h2>
+        <div class="problem-content">
+            <div class="problem-text">
+                <h3>Your Skin Is Losing The Battle Against Time</h3>
+                <p>Every day after 25, your skin faces these invisible attackers:</p>
+                <ul>
+                    <li>Collagen depletion making skin sag and form wrinkles</li>
+                    <li>Free radicals destroying healthy skin cells</li>
+                    <li>Environmental pollutants accelerating aging</li>
+                    <li>Dehydration causing fine lines and dullness</li>
+                    <li>UV damage creating age spots and uneven tone</li>
+                </ul>
+                <p>Most skincare products don't address these root causes - they just temporarily mask the symptoms.</p>
+            </div>
+            <div class="problem-image">
+                <img src="./image/picture.jpeg" alt="Aging skin problems">
+            </div>
+        </div>
+    </section>
+    
+    <section class="solution-section">
+        <h2 class="section-title">The LuxeGlow Breakthrough</h2>
+        <div class="solution-content">
+            <div class="solution-text">
+                <h3>Science-Backed Age Reversal</h3>
+                <p>After 7 years of research with dermatologists, we developed a proprietary blend that:</p>
+                <ul>
+                    <li>Stimulates collagen production by 189% (clinical study)</li>
+                    <li>Neutralizes free radicals with 12 potent antioxidants</li>
+                    <li>Reduces appearance of wrinkles by 63% in 4 weeks</li>
+                    <li>Improves skin hydration by 200% within 1 hour</li>
+                    <li>Protects against future environmental damage</li>
+                </ul>
+                <p>This isn't just moisturizer - it's a complete skin rejuvenation system.</p>
+            </div>
+            <div class="solution-image">
+                <img src="./image/picture-4.png" alt="LuxeGlow solution">
+            </div>
+        </div>
+    </section>
+    
+    <section class="comparison-section">
+        <h2 class="section-title">What Others Do vs What We Do</h2>
+        <div class="comparison-grid">
+            <div class="comparison-header">
+                <div>Other Products</div>
+                <div>LuxeGlow</div>
+            </div>
+            <div class="comparison-row">
+                <div class="others">
+                    <div class="comparison-icon">✖</div>
+                    Temporary surface hydration
+                </div>
+                <div class="us">
+                    <div class="comparison-icon">✓</div>
+                    Deep cellular rejuvenation
+                </div>
+            </div>
+            <div class="comparison-row">
+                <div class="others">
+                    <div class="comparison-icon">✖</div>
+                    Single active ingredient
+                </div>
+                <div class="us">
+                    <div class="comparison-icon">✓</div>
+                    12-active patented complex
+                </div>
+            </div>
+            <div class="comparison-row">
+                <div class="others">
+                    <div class="comparison-icon">✖</div>
+                    Harsh chemicals & fillers
+                </div>
+                <div class="us">
+                    <div class="comparison-icon">✓</div>
+                    Clean, dermatologist-tested formula
+                </div>
+            </div>
+            <div class="comparison-row">
+                <div class="others">
+                    <div class="comparison-icon">✖</div>
+                    Results fade when you stop
+                </div>
+                <div class="us">
+                    <div class="comparison-icon">✓</div>
+                    Long-term skin transformation
+                </div>
+            </div>
+            <div class="comparison-row">
+                <div class="others">
+                    <div class="comparison-icon">✖</div>
+                    Only addresses 1-2 aging signs
+                </div>
+                <div class="us">
+                    <div class="comparison-icon">✓</div>
+                    Comprehensive anti-aging solution
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="benefits-section">
+        <h2 class="section-title">What You'll Experience</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">✨</div>
+                <h3>Visible Wrinkle Reduction</h3>
+                <p>See fine lines disappear and deep wrinkles soften dramatically within weeks.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🌟</div>
+                <h3>Youthful Plumpness</h3>
+                <p>Restore lost volume as collagen production skyrockets, lifting sagging skin.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💎</div>
+                <h3>Radiant Glow</h3>
+                <p>Dullness vanishes as cellular turnover renews your complexion daily.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🔒</div>
+                <h3>24/7 Protection</h3>
+                <p>Our antioxidant shield defends against future environmental damage.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💧</div>
+                <h3>Intense Hydration</h3>
+                <p>Hyaluronic acid binds 1000x its weight in water for lasting moisture.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🌿</div>
+                <h3>Clean Formula</h3>
+                <p>No parabens, sulfates, phthalates, or synthetic fragrances - just pure results.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="rotated-images">
+        <h2 class="section-title">Real Results, Real People</h2>
+        <div class="image-container">
+            <div class="rotated-image">
+                <img src="./image/picture-1.webp" alt="Before and After 1">
+            </div>
+            <div class="rotated-image">
+                <img src="./image/picture-2.jpg" alt="Before and After 2">
+            </div>
+            <div class="rotated-image">
+                <img src="./image/picture-3.jpg" alt="Before and After 3">
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    I've tried every luxury cream out there - nothing comes close to LuxeGlow. At 52, I'm getting compliments on my skin daily. My daughter asked what cosmetic procedures I've had done!
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah J.">
+                    </div>
+                    <div class="author-info">
+                        <h4>Sarah J.</h4>
+                        <p>Verified Customer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    After just 3 weeks, my coworkers thought I came back from vacation. The deep wrinkles around my eyes have visibly softened. This serum is worth every penny.
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T.">
+                    </div>
+                    <div class="author-info">
+                        <h4>Michael T.</h4>
+                        <p>Verified Customer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    My dermatologist was shocked at my last appointment. She asked what I was using and when I showed her LuxeGlow, she said "Whatever you're doing, keep doing it!"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jennifer L.">
+                    </div>
+                    <div class="author-info">
+                        <h4>Jennifer L.</h4>
+                        <p>Verified Customer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <h2>Ready To Turn Back The Clock On Your Skin?</h2>
+        <p>Join 87,542 women and men who have rediscovered their youthful glow with LuxeGlow. Your future self will thank you.</p>
+        <button class="buy-btn">Get My LuxeGlow Serum Now</button>
+    </section>
+    
+    <section class="guarantee">
+        <div class="guarantee-badge">60</div>
+        <h2 class="section-title">Day Money-Back Guarantee</h2>
+        <p>We're so confident you'll love LuxeGlow that we offer a full 60-day money-back guarantee. If you don't see visible improvements in your skin's firmness, texture, and radiance, we'll refund every penny - no questions asked.</p>
+    </section>
+    
+    <section class="faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">How soon will I see results?</div>
+            <div class="faq-answer">
+                Most customers notice improved hydration and radiance within the first week. Visible wrinkle reduction typically appears within 2-3 weeks, with optimal results after 28 days of consistent use.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Is LuxeGlow suitable for sensitive skin?</div>
+            <div class="faq-answer">
+                Absolutely! Our formula is dermatologist-tested and free from common irritants. However, we always recommend doing a patch test behind your ear before full application.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">When should I apply the serum?</div>
+            <div class="faq-answer">
+                For best results, apply to clean skin morning and night after cleansing but before moisturizer. The lightweight formula absorbs quickly and works beautifully under makeup.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How does LuxeGlow compare to botox?</div>
+            <div class="faq-answer">
+                While botox paralyzes muscles to smooth wrinkles temporarily, LuxeGlow actually improves your skin's health at the cellular level for lasting results without injections or downtime.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What makes LuxeGlow different from other serums?</div>
+            <div class="faq-answer">
+                Most serums target just one aging concern. LuxeGlow's patented 12-active complex addresses all signs of aging simultaneously: wrinkles, loss of firmness, dullness, and dehydration.
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-logo">Luxe<span>Glow</span></div>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Shipping Policy</a>
+            <a href="#">Returns</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <div class="copyright">
+            &copy; 2023 LuxeGlow Skincare. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // Slider functionality
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        
+        function goToSlide(n) {
+            slider.style.transform = `translateX(-${n * 33.33}%)`;
+            currentSlide = n;
+            updateDots();
+        }
+        
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => goToSlide(index));
+        });
+        
+        // Auto-slide
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            goToSlide(currentSlide);
+        }, 5000);
+        
+        // Floating button
+        const floatingBtn = document.querySelector('.floating-btn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                floatingBtn.style.display = 'block';
+            } else {
+                floatingBtn.style.display = 'none';
+            }
+        });
+        
+        // Buy button functionality
+        const buyButtons = document.querySelectorAll('.buy-btn');
+        
+        buyButtons.forEach(button => {
+            // Remove the click event if it's an anchor tag
+            if (button.tagName !== 'A') {
+                button.addEventListener('click', () => {
+                    window.location.href = 'checkout.html';
+                });
+            }
+        });
+        
+        // FAQ accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
