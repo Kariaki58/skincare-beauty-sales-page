@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/image/logo.png" />
     <title>Checkout | Ikeya Naturals</title>
     <style>
         :root {
@@ -310,42 +311,6 @@
             margin-bottom: 15px;
         }
         
-        .payment-options {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .payment-option {
-            flex: 1;
-            min-width: 100px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .payment-option:hover {
-            border-color: var(--primary);
-        }
-        
-        .payment-option.active {
-            border-color: var(--primary);
-            background-color: rgba(107,142,35,0.1);
-        }
-        
-        .payment-option img {
-            height: 30px;
-            margin-bottom: 10px;
-        }
-        
-        .payment-option-name {
-            font-size: 14px;
-        }
-        
         /* Pay Button */
         .pay-btn {
             width: 100%;
@@ -462,11 +427,13 @@
             background-color: #7ba52b;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax抬/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
-        <div class="logo">Ikeya<span>Naturals</span></div>
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;">Ikeya<span>Naturals</span></a>
+        </div>
     </header>
     
     <div class="progress-steps">
@@ -603,12 +570,9 @@
             
             <div class="payment-methods">
                 <h4 class="payment-title">Payment Method</h4>
-                
-                <div class="payment-options">
-                    <div class="payment-option" data-method="paystack">
-                        <img src="/image/Paystack.webp" alt="Paystack" style="height: 25px;">
-                        <div class="payment-option-name">Paystack</div>
-                    </div>
+                <div class="payment-option active" data-method="paystack">
+                    <img src="/image/Paystack.webp" alt="Paystack" style="height: 25px;">
+                    <div class="payment-option-name">Paystack</div>
                 </div>
                 
                 <button class="pay-btn" onclick="processPayment()">Pay Now</button>
@@ -626,7 +590,7 @@
     <footer>
         <div class="footer-logo">Ikeya<span>Naturals</span></div>
         <div class="copyright">
-            &copy; 2023 Ikeya Naturals. Handcrafted in Nigeria with love.
+            © 2023 Ikeya Naturals. Handcrafted in Nigeria with love.
         </div>
     </footer>
     
@@ -639,7 +603,7 @@
         };
         
         let shippingCost = 500;
-        let paymentMethod = 'card';
+        const paymentMethod = 'paystack'; // Default to Paystack
         
         // Update quantity functions
         function updateQuantity(button, change) {
@@ -678,14 +642,12 @@
             
             updateTotals();
             
-            // Check if all products are removed
             if (Object.keys(products).length === 0) {
                 document.querySelector('.products-container').style.display = 'none';
                 document.querySelector('.summary-totals').style.display = 'none';
                 document.querySelector('.payment-methods').style.display = 'none';
                 document.querySelector('.empty-cart').style.display = 'block';
                 
-                // Redirect to index.html after 2 seconds
                 setTimeout(() => {
                     window.location.href = 'index.html';
                 }, 2000);
@@ -700,7 +662,6 @@
                 subtotal += products[productId].price * products[productId].quantity;
             }
             
-            // Update shipping cost based on selection
             const expressShipping = document.getElementById('express-shipping').checked;
             shippingCost = expressShipping ? 1500 : 500;
             
@@ -716,20 +677,8 @@
             option.addEventListener('change', updateTotals);
         });
         
-        // Payment method selection
-        document.querySelectorAll('.payment-option').forEach(option => {
-            option.addEventListener('click', () => {
-                document.querySelectorAll('.payment-option').forEach(opt => {
-                    opt.classList.remove('active');
-                });
-                option.classList.add('active');
-                paymentMethod = option.dataset.method;
-            });
-        });
-        
         // Process payment
         function processPayment() {
-            // Validate form
             const requiredFields = ['email', 'first-name', 'last-name', 'address', 'city', 'state', 'phone'];
             let isValid = true;
             
@@ -753,14 +702,12 @@
                 return;
             }
             
-            // Calculate total
             let subtotal = 0;
             for (const productId in products) {
                 subtotal += products[productId].price * products[productId].quantity;
             }
             const total = subtotal + shippingCost;
             
-            // Collect customer data
             const customerData = {
                 email: document.getElementById('email').value,
                 firstName: document.getElementById('first-name').value,
@@ -777,95 +724,47 @@
                 total: total
             };
             
-            // Process payment based on selected method
-            if (paymentMethod === 'paystack') {
-                processPaystackPayment(customerData);
-            } else {
-                // For card payment (simulated)
-                simulateCardPayment(customerData);
-            }
+            processPaystackPayment(customerData);
         }
         
         // Paystack payment processing
-        // In checkout.html, replace the processPaystackPayment and simulateCardPayment functions
+        function processPaystackPayment(customerData) {
+            const handler = PaystackPop.setup({
+                key: 'pk_test_fe3c7c857fbdf1e647efae4259d89937f3914562', // Replace with your Paystack public key
+                email: customerData.email,
+                amount: customerData.total * 100, // Paystack amount is in kobo
+                currency: 'NGN',
+                ref: 'IK' + Math.floor(Math.random() * 1000000000 + 1),
+                callback: function(response) {
+                    customerData.paymentReference = response.reference;
+                    logOrderAndSendEmail(customerData);
+                    alert('Payment successful! Thank you for your purchase.');
+                    
+                    const formattedAddress = [
+                        customerData.address,
+                        customerData.apartment ? customerData.apartment : '',
+                        `${customerData.city}, ${customerData.state}`,
+                        'Nigeria'
+                    ].filter(Boolean).join('<br>');
 
-function processPaystackPayment(customerData) {
-    const handler = PaystackPop.setup({
-        key: 'pk_test_fe3c7c857fbdf1e647efae4259d89937f3914562', // Replace with your Paystack public key
-        email: customerData.email,
-        amount: customerData.total * 100, // Paystack amount is in kobo
-        currency: 'NGN',
-        ref: 'IK' + Math.floor(Math.random() * 1000000000 + 1),
-        callback: function(response) {
-            // Payment successful
-            customerData.paymentReference = response.reference;
-            logOrderAndSendEmail(customerData);
-            alert('Payment successful! Thank you for your purchase.');
-            
-            // Format address for thank-you page
-            const formattedAddress = [
-                customerData.address,
-                customerData.apartment ? customerData.apartment : '',
-                `${customerData.city}, ${customerData.state}`,
-                'Nigeria'
-            ].filter(Boolean).join('<br>');
-
-            // Redirect to thank-you page with parameters
-            const params = new URLSearchParams({
-                total: `₦${customerData.total.toLocaleString()}`,
-                payment: paymentMethod === 'paystack' ? 'Paystack' : 'Card',
-                address: formattedAddress,
-                orderNumber: response.reference
+                    const params = new URLSearchParams({
+                        total: `₦${customerData.total.toLocaleString()}`,
+                        payment: 'Paystack',
+                        address: formattedAddress,
+                        orderNumber: response.reference
+                    });
+                    window.location.href = `thank-you.html?${params.toString()}`;
+                },
+                onClose: function() {
+                    alert('Payment window closed');
+                }
             });
-            window.location.href = `thank-you.html?${params.toString()}`;
-        },
-        onClose: function() {
-            alert('Payment window closed');
-        }
-    });
-    handler.openIframe();
-}
-
-        function simulateCardPayment(customerData) {
-            // Simulate card payment
-            alert('Card payment processed successfully! Thank you for your purchase.');
-            logOrderAndSendEmail(customerData);
-            
-            // Format address for thank-you page
-            const formattedAddress = [
-                customerData.address,
-                customerData.apartment ? customerData.apartment : '',
-                `${customerData.city}, ${customerData.state}`,
-                'Nigeria'
-            ].filter(Boolean).join('<br>');
-
-            // Generate a mock order number
-            const mockOrderNumber = 'IK' + Math.floor(Math.random() * 1000000000 + 1);
-
-            // Redirect to thank-you page with parameters
-            const params = new URLSearchParams({
-                total: `₦${customerData.total.toLocaleString()}`,
-                payment: 'Card',
-                address: formattedAddress,
-                orderNumber: mockOrderNumber
-            });
-            window.location.href = `thank-you.html?${params.toString()}`;
-        }
-        // Simulate card payment (for demo purposes)
-        function simulateCardPayment(customerData) {
-            // In a real implementation, this would process the card payment
-            alert('Card payment processed successfully! Thank you for your purchase.');
-            logOrderAndSendEmail(customerData);
-            // Redirect to thank you page
-            window.location.href = 'thank-you.html';
+            handler.openIframe();
         }
         
         // Log order and send email (simulated)
         function logOrderAndSendEmail(customerData) {
             console.log('Order Details:', customerData);
-            // In a real implementation, this would send the data to your backend
-            // which would then send an email to the admin
-            // For demo purposes, we're just logging to console
         }
     </script>
 </body>
