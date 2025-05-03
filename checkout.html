@@ -740,7 +740,7 @@
         // Paystack payment processing
         function processPaystackPayment(customerData) {
             const handler = PaystackPop.setup({
-                key: 'pk_test_2210f779994251c1229312ab985aff1bb8c8bf00', // Replace with your Paystack public key
+                key: 'pk_live_a7e48ef08d1bdf092e3aa12efb41d4bac3ff2255', // Replace with your Paystack public key
                 email: customerData.email,
                 amount: customerData.total * 100, // Paystack amount is in kobo
                 currency: 'NGN',
