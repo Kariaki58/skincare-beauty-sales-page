@@ -688,6 +688,24 @@
             padding: 50px 5%;
             background-color: #f5f5f5;
         }
+
+        .testimonial-image {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover .testimonial-image img {
+            transform: scale(1.03);
+        }
         
         .testimonial-grid {
             display: grid;
@@ -698,11 +716,8 @@
         }
         
         .testimonial-card {
-            background-color: var(--light);
             padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid var(--accent);
         }
         
         .testimonial-text {
@@ -756,7 +771,7 @@
         .cta-section {
             padding: 60px 5%;
             text-align: center;
-            background: linear-gradient(135deg, var(--primary) 0%, #7ba52b 100%);
+            background: rgb(1, 75, 1);
             color: var(--light);
         }
         
@@ -1015,7 +1030,6 @@
         <div class="logo">
             <a href="index.html" style="text-decoration: none; color: inherit;">Ikeya<span>Naturals</span></a>
         </div>
-        </nav>
     </nav>
     
     <section class="hero">
@@ -1068,7 +1082,7 @@
     <!-- BotaniButter Product Highlight -->
     <section class="product-highlight">
         <div class="product-image">
-            <img src="/image/image-1.png" alt="Ikeya BotaniButter">
+            <img src="/image/image-deng.png" alt="Ikeya BotaniButter">
         </div>
         <div class="product-details">
             <h2 class="product-title">Ikeya BotaniButter</h2>
@@ -1097,7 +1111,7 @@
     <!-- Herbal Hair Oil Product Highlight -->
     <section class="product-highlight">
         <div class="product-image">
-            <img src="/image/image-deng.png" alt="Ikeya Herbal Hair Oil">
+            <img src="/image/image-1.png" alt="Ikeya Herbal Hair Oil">
         </div>
         <div class="product-details">
             <h2 class="product-title">Ikeya Herbal Hair Oil</h2>
@@ -1130,12 +1144,12 @@
         
         <div class="before-after-cards">
             <div class="ba-card">
-                <img src="/image/main-3.jpeg" alt="Before using Ikeya Naturals">
+                <img src="/image/check.jpeg" alt="Before using Ikeya Naturals">
                 <div class="ba-card-title">Before</div>
             </div>
             <div class="ba-card">
-                <img src="/image/check.jpeg" alt="After using Ikeya Naturals">
-                <div class="ba-card-title">After 8 Weeks</div>
+                <img src="/image/main-3.jpeg" alt="After using Ikeya Naturals">
+                <div class="ba-card-title">After 2 Weeks</div>
             </div>
         </div>
     </section>
@@ -1213,36 +1227,13 @@
         <h2 class="section-title">Hair Love Stories</h2>
         <div class="testimonial-grid">
             <div class="testimonial-card">
-                <div class="testimonial-text">
-                    After just 2 weeks of using the BotaniButter, my hair has never been softer. I can finally go 5 days without rewetting my hair because the moisture actually stays!
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-info">
-                        <h4>Amina K.</h4>
-                        <p>Lagos, Nigeria</p>
-                    </div>
+                <div class="testimonial-image">
+                    <img src="/image/review-1.jpeg" alt="Customer testimonial 1" style="width:100%; border-radius:8px;">
                 </div>
             </div>
             <div class="testimonial-card">
-                <div class="testimonial-text">
-                    The Herbal Hair Oil saved my edges! I was almost ready to give up and get a wig, but after 6 weeks of consistent use, my baby hairs are growing back thicker than ever.
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-info">
-                        <h4>Chioma E.</h4>
-                        <p>Abuja, Nigeria</p>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    As a natural hair stylist, I'm picky about products. Ikeya Naturals is the only brand I recommend to clients now. The ingredients list is clean and the results speak for themselves.
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-info">
-                        <h4>Nneka P.</h4>
-                        <p>Natural Hair Stylist</p>
-                    </div>
+                <div class="testimonial-image">
+                    <img src="/image/review-2.jpeg" alt="Customer testimonial 2" style="width:100%; border-radius:8px;">
                 </div>
             </div>
         </div>
@@ -1252,14 +1243,6 @@
         <h2>Ready To Transform Your Hair Journey?</h2>
         <p>Join thousands of Nigerian women who've rediscovered the joy of healthy natural hair with Ikeya Naturals.</p>
         <button class="buy-now-btn">SHOP NOW</button>
-    </section>
-    
-    <section class="guarantee">
-        <div class="guarantee-badge">
-            <i class="fas fa-heart"></i>
-        </div>
-        <h2 class="section-title">Our Promise To You</h2>
-        <p>We stand behind every product we make. If you don't see noticeable improvement in your hair's moisture, manageability, or growth within 30 days, we'll refund your purchase - no questions asked.</p>
     </section>
     
     <section class="faq-section">

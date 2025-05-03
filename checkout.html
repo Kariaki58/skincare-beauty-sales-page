@@ -518,7 +518,7 @@
                 <div class="product-item" data-product="botanibutter" data-price="2000">
                     <button class="remove-item" onclick="removeProduct(this)"><i class="fas fa-times"></i></button>
                     <div class="product-image">
-                        <img src="/image/image-1.png" alt="Ikeya BotaniButter">
+                        <img src="/image/image-deng.png" alt="Ikeya BotaniButter">
                     </div>
                     <div class="product-details">
                         <div class="product-name">Ikeya BotaniButter</div>
@@ -534,7 +534,7 @@
                 <div class="product-item" data-product="herbaloil" data-price="3000">
                     <button class="remove-item" onclick="removeProduct(this)"><i class="fas fa-times"></i></button>
                     <div class="product-image">
-                        <img src="/image/image-deng.png" alt="Ikeya Herbal Hair Oil">
+                        <img src="/image/image-1.png" alt="Ikeya Herbal Hair Oil">
                     </div>
                     <div class="product-details">
                         <div class="product-name">Ikeya Herbal Hair Oil</div>
@@ -595,6 +595,16 @@
     </footer>
     
     <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "o_XZGriQaTyIRXJ_j",
+            });
+        })();
+    </script>
     <script>
         // Product data
         const products = {
@@ -730,7 +740,7 @@
         // Paystack payment processing
         function processPaystackPayment(customerData) {
             const handler = PaystackPop.setup({
-                key: 'pk_test_fe3c7c857fbdf1e647efae4259d89937f3914562', // Replace with your Paystack public key
+                key: 'pk_test_2210f779994251c1229312ab985aff1bb8c8bf00', // Replace with your Paystack public key
                 email: customerData.email,
                 amount: customerData.total * 100, // Paystack amount is in kobo
                 currency: 'NGN',
@@ -764,7 +774,40 @@
         
         // Log order and send email (simulated)
         function logOrderAndSendEmail(customerData) {
-            console.log('Order Details:', customerData);
+            
+            emailjs.send('service_s413k7c', 'template_wzlbfha', {
+                name: customerData.name,
+                to_name: "Favour",
+                from_name: customerData.firstName,
+                email: "mordecaifavour316@gmail.com",
+                subject: "You got a new Order",
+                message: `
+                    Customer Details:
+                    - Email: ${customerData.email}
+                    - Phone: ${customerData.phone}
+                    - Address: ${customerData.address}, ${customerData.apartment}
+                    - City: ${customerData.city}
+                    - State: ${customerData.state}
+
+                    Shipping Method: ${customerData.shippingMethod}
+
+                    Order Summary:
+                    ${Object.entries(customerData.products).map(([product, details]) => 
+                        `- ${product}: ₦${details.price} x ${details.quantity} = ₦${details.price * details.quantity}`
+                    ).join('\n')}
+
+                    - Subtotal: ₦${customerData.subtotal}
+                    - Shipping: ₦${customerData.shipping}
+                    - Total: ₦${customerData.total}
+
+                    Payment Reference: ${customerData.paymentReference}
+                `
+            })
+            .then(response => {
+                console.log('Email sent!', response.status, response.text);
+            }, error => {
+                console.error('Failed to send email:', error);
+            });
         }
     </script>
 </body>
