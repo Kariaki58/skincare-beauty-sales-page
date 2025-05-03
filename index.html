@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LuxeGlow - Revolutionary Anti-Aging Serum</title>
+    <title>Ikeya Naturals | Handcrafted Haircare for Natural Hair</title>
     <style>
         :root {
-            --primary: #D2B48C; /* light brown */
-            --secondary: #000000;
-            --light: #FFFFFF;
+            --primary: #6B8E23; /* olive green */
+            --secondary: #3D2B1F; /* dark brown */
+            --accent: #D2B48C; /* light tan */
+            --light: #FFF8F0; /* creamy white */
         }
         
         * {
@@ -44,6 +45,7 @@
             color: var(--secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-family: 'Georgia', serif;
         }
         
         .logo span {
@@ -69,6 +71,7 @@
             font-size: 32px;
             margin-bottom: 15px;
             line-height: 1.3;
+            font-family: 'Georgia', serif;
         }
         
         .hero h1 span {
@@ -156,29 +159,46 @@
         /* Buy Button */
         .buy-btn {
             background-color: var(--primary);
-            color: rgb(36, 30, 30);
+            color: var(--light);
             border: none;
-            padding: 20px 30px;
+            padding: 15px 25px;
             font-size: 16px;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(210,180,140,0.4);
+            box-shadow: 0 5px 15px rgba(107,142,35,0.4);
             text-transform: uppercase;
             letter-spacing: 1px;
             display: inline-block;
-            margin: 0 auto;
-            width: fit-content;
+            margin: 10px 5px;
         }
         
         .buy-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(210,180,140,0.6);
+            box-shadow: 0 8px 20px rgba(107,142,35,0.6);
+            background-color: #7ba52b;
         }
         
         .buy-btn:active {
             transform: translateY(1px);
+        }
+        
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary);
+            margin: 10px 0;
+        }
+        
+        .ingredient-pill {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--secondary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 14px;
         }
         
         .floating-btn {
@@ -196,13 +216,13 @@
         
         @keyframes pulse {
             0% {
-                box-shadow: 0 0 0 0 rgba(210,180,140,0.7);
+                box-shadow: 0 0 0 0 rgba(107,142,35,0.7);
             }
             70% {
-                box-shadow: 0 0 0 10px rgba(210,180,140,0);
+                box-shadow: 0 0 0 10px rgba(107,142,35,0);
             }
             100% {
-                box-shadow: 0 0 0 0 rgba(210,180,140,0);
+                box-shadow: 0 0 0 0 rgba(107,142,35,0);
             }
         }
         
@@ -217,6 +237,7 @@
             font-size: 28px;
             margin-bottom: 40px;
             position: relative;
+            font-family: 'Georgia', serif;
         }
         
         .section-title:after {
@@ -246,6 +267,7 @@
             font-size: 22px;
             margin-bottom: 15px;
             text-align: center;
+            color: var(--primary);
         }
         
         .problem-text ul {
@@ -272,7 +294,7 @@
             text-align: center;
             margin-bottom: 30px;
             width: 100%;
-            height: 450px; /* Or set a specific height like 500px */
+            height: 300px;
             position: relative;
             overflow: hidden;
         }
@@ -285,6 +307,257 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
+        /* Updated Product Highlight Section */
+        .product-highlight {
+            display: flex;
+            flex-direction: column;
+            padding: 50px 5%;
+            background-color: white;
+            margin: 40px 0;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-highlight:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .product-image {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .product-image img {
+            max-width: 280px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        .product-details {
+            text-align: center;
+            position: relative;
+        }
+        
+        .product-title {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .product-title:after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: var(--accent);
+            opacity: 0.3;
+            z-index: -1;
+            border-radius: 4px;
+        }
+        
+        .price {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--secondary);
+            margin: 15px 0;
+            position: relative;
+            display: inline-block;
+            padding: 0 15px;
+        }
+        
+        .price:before, .price:after {
+            content: '~';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 20px;
+        }
+        
+        .price:before {
+            left: -5px;
+        }
+        
+        .price:after {
+            right: -5px;
+        }
+        
+        .product-details p {
+            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .product-benefits {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        
+        .benefit-tag {
+            background-color: var(--light);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .benefit-tag i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        
+        .ingredients {
+            margin: 25px 0;
+        }
+        
+        .ingredient-pill {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--secondary);
+            padding: 6px 15px;
+            border-radius: 30px;
+            margin: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+        }
+        
+        /* Buy Now Button */
+        .buy-now-btn {
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            padding: 16px 35px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(107,142,35,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .buy-now-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .buy-now-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(107,142,35,0.4);
+            background-color: #7ba52b;
+        }
+        
+        .buy-now-btn:hover:before {
+            left: 100%;
+        }
+        
+        .buy-now-btn:active {
+            transform: translateY(1px);
+        }
+        
+        /* Before & After Section */
+        .before-after-section {
+            padding: 60px 5%;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        
+        .before-after-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 40px;
+            perspective: 1000px;
+        }
+        
+        .ba-card {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+        }
+        
+        .ba-card:hover {
+            transform: rotateY(10deg) rotateX(5deg) rotateZ(-2deg);
+        }
+        
+        .ba-card:nth-child(even):hover {
+            transform: rotateY(-10deg) rotateX(5deg) rotateZ(2deg);
+        }
+        
+        .ba-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .ba-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.7));
+            border-radius: 10px;
+        }
+        
+        .ba-card-title {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            padding: 0 20px;
+        }
         
         /* Solution Section */
         .solution-section {
@@ -342,57 +615,6 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
         
-        /* Comparison Section */
-        .comparison-section {
-            padding: 50px 5%;
-            background-color: #f5f5f5;
-        }
-        
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            max-width: 100%;
-            margin: 30px auto 0;
-        }
-        
-        .comparison-header {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            text-align: center;
-            margin-bottom: 15px;
-            font-weight: bold;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 10px;
-        }
-        
-        .comparison-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding: 12px 0;
-            border-bottom: 1px solid #ddd;
-            align-items: center;
-        }
-        
-        .comparison-row div {
-            text-align: center;
-            padding: 0 10px;
-        }
-        
-        .others {
-            color: #777;
-        }
-        
-        .us {
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        .comparison-icon {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-        
         /* Benefits Section */
         .benefits-section {
             padding: 50px 5%;
@@ -414,6 +636,7 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s;
+            border: 1px solid var(--accent);
         }
         
         .benefit-card:hover {
@@ -429,39 +652,31 @@
         .benefit-card h3 {
             margin-bottom: 12px;
             font-size: 18px;
+            color: var(--secondary);
         }
         
-        /* Rotated Images Section */
-        .rotated-images {
+        /* Story Section */
+        .story-section {
             padding: 50px 5%;
             background-color: var(--light);
+            text-align: center;
+        }
+        
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .story-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
             overflow: hidden;
+            margin: 0 auto 20px;
+            border: 5px solid var(--accent);
         }
         
-        .image-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .rotated-image {
-            width: 250px;
-            height: 250px;
-            transform: rotate(0deg);
-            transition: all 0.3s;
-            border-radius: 8px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .rotated-image:hover {
-            transform: scale(1.05);
-            z-index: 2;
-        }
-        
-        .rotated-image img {
+        .story-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -486,6 +701,7 @@
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--accent);
         }
         
         .testimonial-text {
@@ -516,6 +732,7 @@
             border-radius: 50%;
             overflow: hidden;
             margin-right: 12px;
+            border: 2px solid var(--accent);
         }
         
         .author-avatar img {
@@ -538,8 +755,8 @@
         .cta-section {
             padding: 60px 5%;
             text-align: center;
-            background: linear-gradient(135deg, var(--primary) 0%, #e6c9a1 100%);
-            color: var(--secondary);
+            background: linear-gradient(135deg, var(--primary) 0%, #7ba52b 100%);
+            color: var(--light);
         }
         
         .cta-section h2 {
@@ -558,6 +775,8 @@
             padding: 50px 5%;
             background-color: var(--light);
             text-align: center;
+            border-top: 1px solid var(--accent);
+            border-bottom: 1px solid var(--accent);
         }
         
         .guarantee-badge {
@@ -571,7 +790,7 @@
             margin: 0 auto 20px;
             font-size: 32px;
             font-weight: bold;
-            color: var(--secondary);
+            color: var(--light);
         }
         
         .guarantee p {
@@ -637,6 +856,7 @@
             font-weight: 700;
             margin-bottom: 15px;
             color: var(--light);
+            font-family: 'Georgia', serif;
         }
         
         .footer-logo span {
@@ -659,7 +879,7 @@
         }
         
         .footer-links a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
         
         .copyright {
@@ -672,7 +892,7 @@
         @media (min-width: 768px) {
             .hero {
                 flex-direction: row;
-                min-height: 80vh;
+                min-height: auto;
                 padding: 60px 5%;
             }
             
@@ -728,6 +948,7 @@
                 order: 2;
                 flex: 1;
                 margin-bottom: 0;
+                height: 400px;
             }
             
             .solution-text {
@@ -743,40 +964,41 @@
                 flex: 1;
             }
             
-            .comparison-grid, .benefits-grid {
-                grid-template-columns: 1fr;
-                max-width: 800px;
+            .product-highlight {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .product-image {
+                flex: 1;
+                margin-bottom: 0;
+            }
+            
+            .product-image img {
+                max-width: 350px;
+            }
+            
+            .product-details {
+                flex: 1;
+                text-align: left;
+                padding-left: 60px;
+            }
+            
+            .product-benefits {
+                justify-content: flex-start;
             }
             
             .benefits-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
             
-            .image-container {
-                flex-direction: row;
-                justify-content: center;
-                gap: 40px;
-            }
-            
-            .rotated-image {
-                transform: rotate(10deg);
-            }
-            
-            .rotated-image:nth-child(2) {
-                transform: rotate(-10deg);
-                margin-top: 40px;
-            }
-            
-            .rotated-image:nth-child(3) {
-                transform: rotate(5deg);
-            }
-            
-            .rotated-image:hover {
-                transform: rotate(0deg) scale(1.05);
-            }
-            
             .testimonial-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .ba-card {
+                width: 350px;
+                height: 450px;
             }
             
             .footer-links {
@@ -785,26 +1007,27 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <nav>
-        <div class="logo">Luxe<span>Glow</span></div>
+        <div class="logo">Ikeya<span>Naturals</span></div>
     </nav>
     
     <section class="hero">
         <div class="hero-content">
-            <h1>Erase Years From Your Face <span>Overnight</span></h1>
-            <p>Our clinically-proven anti-aging serum delivers visible results in just 28 days. Experience firmer, smoother, younger-looking skin without expensive procedures or harmful chemicals.</p>
-            <button class="buy-btn">GET YOURS</button>
+            <h1>Your Natural Hair's <span>Best Kept Secret</span></h1>
+            <p>Handcrafted in Nigeria with love and ancestral wisdom, Ikeya Naturals transforms dry, brittle hair into lush, hydrated crowns using nature's most potent ingredients.</p>
+            <button class="buy-now-btn">SHOP NOW</button>
         </div>
         <div class="hero-image">
             <div class="slider-container">
                 <div class="slider">
                     <div class="slide">
-                        <img src="./image/image-2.jpeg" alt="LuxeGlow Serum Bottle">
+                        <img src="/image/image-2.jpeg" alt="Woman with beautiful natural hair">
                     </div>
                     <div class="slide">
-                        <img src="./image/image-1.png" alt="Woman applying LuxeGlow Serum">
+                        <img src="/image/image-1.png" alt="Ikeya Naturals products">
                     </div>
                 </div>
                 <div class="slider-nav">
@@ -815,203 +1038,206 @@
         </div>
     </section>
     
-    <button class="buy-btn floating-btn">GET YOURS</button>
+    <!-- <button class="buy-now-btn floating-btn">SHOP NOW</button> -->
     
     <section class="problem-section">
-        <h2 class="section-title">The Aging Problem No One Talks About</h2>
+        <h2 class="section-title">The Natural Hair Struggle Is Real</h2>
         <div class="problem-content">
             <div class="problem-text">
-                <h3>Your Skin Is Losing The Battle Against Time</h3>
-                <p>Every day after 25, your skin faces these invisible attackers:</p>
+                <h3>Why Does Natural Hair Feel Like a Full-Time Job?</h3>
+                <p>If you're constantly battling with:</p>
                 <ul>
-                    <li>Collagen depletion making skin sag and form wrinkles</li>
-                    <li>Free radicals destroying healthy skin cells</li>
-                    <li>Environmental pollutants accelerating aging</li>
-                    <li>Dehydration causing fine lines and dullness</li>
-                    <li>UV damage creating age spots and uneven tone</li>
+                    <li>Dryness that makes your hair feel like straw</li>
+                    <li>Breakage that sabotages your length retention</li>
+                    <li>Frizz that won't stay tamed no matter what</li>
+                    <li>Products that sit on your hair without absorbing</li>
+                    <li>Endless hours spent detangling</li>
                 </ul>
-                <p>Most skincare products don't address these root causes - they just temporarily mask the symptoms.</p>
+                <p>You're not alone. Most commercial products are filled with silicones and alcohols that create temporary shine but long-term damage.</p>
             </div>
             <div class="problem-image">
-                <img src="./image/picture.jpeg" alt="Aging skin problems">
+                <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Dry, tangled natural hair">
+            </div>
+        </div>
+    </section>
+    
+    <!-- BotaniButter Product Highlight -->
+    <section class="product-highlight">
+        <div class="product-image">
+            <img src="/image/image-1.png" alt="Ikeya BotaniButter">
+        </div>
+        <div class="product-details">
+            <h2 class="product-title">Ikeya BotaniButter</h2>
+            <div class="price">₦2,000</div>
+            <p>A rich, creamy blend of shea butter, mango butter, and grapeseed oil that melts into your strands, sealing in moisture for days while adding brilliant shine. Perfect for twist-outs, braid-outs, and wash-n-gos.</p>
+            
+            <div class="product-benefits">
+                <div class="benefit-tag"><i class="fas fa-check"></i> 72hr moisture lock</div>
+                <div class="benefit-tag"><i class="fas fa-check"></i> Reduces breakage by 80%</div>
+                <div class="benefit-tag"><i class="fas fa-check"></i> Enhances curl definition</div>
+                <div class="benefit-tag"><i class="fas fa-check"></i> 100% natural ingredients</div>
+            </div>
+            
+            <div class="ingredients">
+                <span class="ingredient-pill">Unrefined Shea Butter</span>
+                <span class="ingredient-pill">Mango Butter</span>
+                <span class="ingredient-pill">Cold-Pressed Grape Seed Oil</span>
+                <span class="ingredient-pill">Vitamin E</span>
+                <span class="ingredient-pill">Essential Oils</span>
+            </div>
+            
+            <button class="buy-now-btn">BUY NOW</button>
+        </div>
+    </section>
+    
+    <!-- Herbal Hair Oil Product Highlight -->
+    <section class="product-highlight">
+        <div class="product-image">
+            <img src="/image/image-deng.png" alt="Ikeya Herbal Hair Oil">
+        </div>
+        <div class="product-details">
+            <h2 class="product-title">Ikeya Herbal Hair Oil</h2>
+            <div class="price">₦3,000</div>
+            <p>An herbal infusion of rosemary, hibiscus, and neem that awakens dormant follicles, reduces shedding, and promotes thicker, longer natural hair. Lightweight yet deeply nourishing.</p>
+            
+            <div class="product-benefits">
+                <div class="benefit-tag"><i class="fas fa-check"></i> Stimulates growth</div>
+                <div class="benefit-tag"><i class="fas fa-check"></i> Reduces shedding by 60%</div>
+                <div class="benefit-tag"><i class="fas fa-check"></i> Soothes itchy scalp</div>
+                <div class="benefit-tag"><i class="fas fa-check"></i> Non-greasy formula</div>
+            </div>
+            
+            <div class="ingredients">
+                <span class="ingredient-pill">Rosemary Extract</span>
+                <span class="ingredient-pill">Hibiscus Flowers</span>
+                <span class="ingredient-pill">Neem Oil</span>
+                <span class="ingredient-pill">Cold-Pressed Olive Oil</span>
+                <span class="ingredient-pill">Peppermint Oil</span>
+            </div>
+            
+            <button class="buy-now-btn">BUY NOW</button>
+        </div>
+    </section>
+    
+    <!-- Before & After Section -->
+    <section class="before-after-section">
+        <h2 class="section-title">Real Results From Real People</h2>
+        <p>See the transformation our products have created for women just like you</p>
+        
+        <div class="before-after-cards">
+            <div class="ba-card">
+                <img src="/image/main-3.jpeg" alt="Before using Ikeya Naturals">
+                <div class="ba-card-title">Before</div>
+            </div>
+            <div class="ba-card">
+                <img src="/image/check.jpeg" alt="After using Ikeya Naturals">
+                <div class="ba-card-title">After 8 Weeks</div>
             </div>
         </div>
     </section>
     
     <section class="solution-section">
-        <h2 class="section-title">The LuxeGlow Breakthrough</h2>
+        <h2 class="section-title">Why Ikeya Naturals Works Differently</h2>
         <div class="solution-content">
             <div class="solution-text">
-                <h3>Science-Backed Age Reversal</h3>
-                <p>After 7 years of research with dermatologists, we developed a proprietary blend that:</p>
+                <h3>Ancestral Wisdom Meets Modern Hair Science</h3>
+                <p>Our small-batch formulas deliver real results because:</p>
                 <ul>
-                    <li>Stimulates collagen production by 189% (clinical study)</li>
-                    <li>Neutralizes free radicals with 12 potent antioxidants</li>
-                    <li>Reduces appearance of wrinkles by 63% in 4 weeks</li>
-                    <li>Improves skin hydration by 200% within 1 hour</li>
-                    <li>Protects against future environmental damage</li>
+                    <li>We use raw, unrefined butters that retain all their natural nutrients</li>
+                    <li>Our oils are cold-pressed to preserve their healing properties</li>
+                    <li>Every herb is carefully selected for specific hair benefits</li>
+                    <li>No fillers, no water, no artificial preservatives - just potent ingredients</li>
+                    <li>Made in Nigeria with love and attention to detail</li>
                 </ul>
-                <p>This isn't just moisturizer - it's a complete skin rejuvenation system.</p>
+                <p>This is the haircare your grandmother would make if she had today's scientific knowledge.</p>
             </div>
             <div class="solution-image">
-                <img src="./image/picture-4.png" alt="LuxeGlow solution">
-            </div>
-        </div>
-    </section>
-    
-    <section class="comparison-section">
-        <h2 class="section-title">What Others Do vs What We Do</h2>
-        <div class="comparison-grid">
-            <div class="comparison-header">
-                <div>Other Products</div>
-                <div>LuxeGlow</div>
-            </div>
-            <div class="comparison-row">
-                <div class="others">
-                    <div class="comparison-icon">✖</div>
-                    Temporary surface hydration
-                </div>
-                <div class="us">
-                    <div class="comparison-icon">✓</div>
-                    Deep cellular rejuvenation
-                </div>
-            </div>
-            <div class="comparison-row">
-                <div class="others">
-                    <div class="comparison-icon">✖</div>
-                    Single active ingredient
-                </div>
-                <div class="us">
-                    <div class="comparison-icon">✓</div>
-                    12-active patented complex
-                </div>
-            </div>
-            <div class="comparison-row">
-                <div class="others">
-                    <div class="comparison-icon">✖</div>
-                    Harsh chemicals & fillers
-                </div>
-                <div class="us">
-                    <div class="comparison-icon">✓</div>
-                    Clean, dermatologist-tested formula
-                </div>
-            </div>
-            <div class="comparison-row">
-                <div class="others">
-                    <div class="comparison-icon">✖</div>
-                    Results fade when you stop
-                </div>
-                <div class="us">
-                    <div class="comparison-icon">✓</div>
-                    Long-term skin transformation
-                </div>
-            </div>
-            <div class="comparison-row">
-                <div class="others">
-                    <div class="comparison-icon">✖</div>
-                    Only addresses 1-2 aging signs
-                </div>
-                <div class="us">
-                    <div class="comparison-icon">✓</div>
-                    Comprehensive anti-aging solution
-                </div>
+                <img src="/image/main-2.jpeg" alt="Ikeya Naturals products">
             </div>
         </div>
     </section>
     
     <section class="benefits-section">
-        <h2 class="section-title">What You'll Experience</h2>
+        <h2 class="section-title">What Your Hair Will Love</h2>
         <div class="benefits-grid">
             <div class="benefit-card">
-                <div class="benefit-icon">✨</div>
-                <h3>Visible Wrinkle Reduction</h3>
-                <p>See fine lines disappear and deep wrinkles soften dramatically within weeks.</p>
+                <div class="benefit-icon"><i class="fas fa-leaf"></i></div>
+                <h3>Real Ingredients</h3>
+                <p>No mysterious chemicals - just recognizable, plant-based ingredients that actually nourish your hair.</p>
             </div>
             <div class="benefit-card">
-                <div class="benefit-icon">🌟</div>
-                <h3>Youthful Plumpness</h3>
-                <p>Restore lost volume as collagen production skyrockets, lifting sagging skin.</p>
+                <div class="benefit-icon"><i class="fas fa-seedling"></i></div>
+                <h3>Growth Support</h3>
+                <p>Our herbal oil blend creates the perfect scalp environment for optimal hair growth.</p>
             </div>
             <div class="benefit-card">
-                <div class="benefit-icon">💎</div>
-                <h3>Radiant Glow</h3>
-                <p>Dullness vanishes as cellular turnover renews your complexion daily.</p>
+                <div class="benefit-icon"><i class="fas fa-lock"></i></div>
+                <h3>Moisture Lock</h3>
+                <p>BotaniButter forms a protective barrier that keeps hydration locked in for days.</p>
             </div>
             <div class="benefit-card">
-                <div class="benefit-icon">🔒</div>
-                <h3>24/7 Protection</h3>
-                <p>Our antioxidant shield defends against future environmental damage.</p>
+                <div class="benefit-icon"><i class="fas fa-heart"></i></div>
+                <h3>Made With Love</h3>
+                <p>Every batch is handcrafted with attention to detail and ancestral care.</p>
             </div>
             <div class="benefit-card">
-                <div class="benefit-icon">💧</div>
-                <h3>Intense Hydration</h3>
-                <p>Hyaluronic acid binds 1000x its weight in water for lasting moisture.</p>
+                <div class="benefit-icon"><i class="fas fa-globe-africa"></i></div>
+                <h3>Local Sourcing</h3>
+                <p>We support Nigerian farmers by using locally sourced ingredients whenever possible.</p>
             </div>
             <div class="benefit-card">
-                <div class="benefit-icon">🌿</div>
-                <h3>Clean Formula</h3>
-                <p>No parabens, sulfates, phthalates, or synthetic fragrances - just pure results.</p>
+                <div class="benefit-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <h3>Community Focused</h3>
+                <p>Your purchase supports a small Nigerian business passionate about natural haircare.</p>
             </div>
         </div>
     </section>
     
-    <section class="rotated-images">
-        <h2 class="section-title">Real Results, Real People</h2>
-        <div class="image-container">
-            <div class="rotated-image">
-                <img src="./image/picture-1.webp" alt="Before and After 1">
+    <section class="story-section">
+        <h2 class="section-title">Our Story</h2>
+        <div class="story-content">
+            <div class="story-image">
+                <img src="/image/founder.jpeg" alt="Founder">
             </div>
-            <div class="rotated-image">
-                <img src="./image/picture-2.jpg" alt="Before and After 2">
-            </div>
-            <div class="rotated-image">
-                <img src="./image/picture-3.jpg" alt="Before and After 3">
-            </div>
+            <p>"Ikeya Naturals was born from my personal struggle with dry, unmanageable natural hair and my grandmother's wisdom. Combining her traditional Yoruba recipes with modern hair science, I created products that actually work for Nigerian hair textures and climates.</p>
+            <p>Every product is made in small batches with the same care I would use for my own hair - because your hair deserves nothing less."</p>
+            <p><strong>- Ikeyemi Ayomide, Founder</strong></p>
         </div>
     </section>
     
     <section class="testimonials">
-        <h2 class="section-title">What Our Customers Say</h2>
+        <h2 class="section-title">Hair Love Stories</h2>
         <div class="testimonial-grid">
             <div class="testimonial-card">
                 <div class="testimonial-text">
-                    I've tried every luxury cream out there - nothing comes close to LuxeGlow. At 52, I'm getting compliments on my skin daily. My daughter asked what cosmetic procedures I've had done!
+                    After just 2 weeks of using the BotaniButter, my hair has never been softer. I can finally go 5 days without rewetting my hair because the moisture actually stays!
                 </div>
                 <div class="testimonial-author">
-                    <div class="author-avatar">
-                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah J.">
-                    </div>
                     <div class="author-info">
-                        <h4>Sarah J.</h4>
-                        <p>Verified Customer</p>
+                        <h4>Amina K.</h4>
+                        <p>Lagos, Nigeria</p>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card">
                 <div class="testimonial-text">
-                    After just 3 weeks, my coworkers thought I came back from vacation. The deep wrinkles around my eyes have visibly softened. This serum is worth every penny.
+                    The Herbal Hair Oil saved my edges! I was almost ready to give up and get a wig, but after 6 weeks of consistent use, my baby hairs are growing back thicker than ever.
                 </div>
                 <div class="testimonial-author">
-                    <div class="author-avatar">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T.">
-                    </div>
                     <div class="author-info">
-                        <h4>Michael T.</h4>
-                        <p>Verified Customer</p>
+                        <h4>Chioma E.</h4>
+                        <p>Abuja, Nigeria</p>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card">
                 <div class="testimonial-text">
-                    My dermatologist was shocked at my last appointment. She asked what I was using and when I showed her LuxeGlow, she said "Whatever you're doing, keep doing it!"
+                    As a natural hair stylist, I'm picky about products. Ikeya Naturals is the only brand I recommend to clients now. The ingredients list is clean and the results speak for themselves.
                 </div>
                 <div class="testimonial-author">
-                    <div class="author-avatar">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jennifer L.">
-                    </div>
                     <div class="author-info">
-                        <h4>Jennifer L.</h4>
-                        <p>Verified Customer</p>
+                        <h4>Nneka P.</h4>
+                        <p>Natural Hair Stylist</p>
                     </div>
                 </div>
             </div>
@@ -1019,68 +1245,62 @@
     </section>
     
     <section class="cta-section">
-        <h2>Ready To Turn Back The Clock On Your Skin?</h2>
-        <p>Join 87,542 women and men who have rediscovered their youthful glow with LuxeGlow. Your future self will thank you.</p>
-        <button class="buy-btn">Get My LuxeGlow Serum Now</button>
+        <h2>Ready To Transform Your Hair Journey?</h2>
+        <p>Join thousands of Nigerian women who've rediscovered the joy of healthy natural hair with Ikeya Naturals.</p>
+        <button class="buy-now-btn">SHOP NOW</button>
     </section>
     
     <section class="guarantee">
-        <div class="guarantee-badge">60</div>
-        <h2 class="section-title">Day Money-Back Guarantee</h2>
-        <p>We're so confident you'll love LuxeGlow that we offer a full 60-day money-back guarantee. If you don't see visible improvements in your skin's firmness, texture, and radiance, we'll refund every penny - no questions asked.</p>
+        <div class="guarantee-badge">
+            <i class="fas fa-heart"></i>
+        </div>
+        <h2 class="section-title">Our Promise To You</h2>
+        <p>We stand behind every product we make. If you don't see noticeable improvement in your hair's moisture, manageability, or growth within 30 days, we'll refund your purchase - no questions asked.</p>
     </section>
     
     <section class="faq-section">
-        <h2 class="section-title">Frequently Asked Questions</h2>
+        <h2 class="section-title">Common Questions</h2>
         
         <div class="faq-item">
-            <div class="faq-question">How soon will I see results?</div>
+            <div class="faq-question">How often should I use these products?</div>
             <div class="faq-answer">
-                Most customers notice improved hydration and radiance within the first week. Visible wrinkle reduction typically appears within 2-3 weeks, with optimal results after 28 days of consistent use.
+                BotaniButter works best when applied to damp hair after washing, or as needed for moisture. The Herbal Hair Oil can be used 2-3 times weekly for scalp massages or daily for sealing ends.
             </div>
         </div>
         
         <div class="faq-item">
-            <div class="faq-question">Is LuxeGlow suitable for sensitive skin?</div>
+            <div class="faq-question">Are these products suitable for all hair types?</div>
             <div class="faq-answer">
-                Absolutely! Our formula is dermatologist-tested and free from common irritants. However, we always recommend doing a patch test behind your ear before full application.
+                Yes! Our products are specially formulated for all textures of natural African hair - from type 3 curls to type 4 coils and kinks. Even transitioning hair sees great results.
             </div>
         </div>
         
         <div class="faq-item">
-            <div class="faq-question">When should I apply the serum?</div>
+            <div class="faq-question">How long does shipping take?</div>
             <div class="faq-answer">
-                For best results, apply to clean skin morning and night after cleansing but before moisturizer. The lightweight formula absorbs quickly and works beautifully under makeup.
+                We process orders within 1-2 business days. Lagos deliveries typically arrive in 2-3 days, while other states take 3-5 business days via our trusted delivery partners.
             </div>
         </div>
         
         <div class="faq-item">
-            <div class="faq-question">How does LuxeGlow compare to botox?</div>
+            <div class="faq-question">Are your products organic?</div>
             <div class="faq-answer">
-                While botox paralyzes muscles to smooth wrinkles temporarily, LuxeGlow actually improves your skin's health at the cellular level for lasting results without injections or downtime.
+                While we use the highest quality natural ingredients, we're not certified organic. However, all our butters and oils are unrefined and our herbs are carefully sourced for purity and potency.
             </div>
         </div>
         
         <div class="faq-item">
-            <div class="faq-question">What makes LuxeGlow different from other serums?</div>
+            <div class="faq-question">Can I use both products together?</div>
             <div class="faq-answer">
-                Most serums target just one aging concern. LuxeGlow's patented 12-active complex addresses all signs of aging simultaneously: wrinkles, loss of firmness, dullness, and dehydration.
+                Absolutely! For best results, apply the Herbal Hair Oil to your scalp and BotaniButter to your lengths and ends. They work synergistically to nourish from root to tip.
             </div>
         </div>
     </section>
     
     <footer>
-        <div class="footer-logo">Luxe<span>Glow</span></div>
-        <div class="footer-links">
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-            <a href="#">Shipping Policy</a>
-            <a href="#">Returns</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-        </div>
+        <div class="footer-logo">Ikeya<span>Naturals</span></div>
         <div class="copyright">
-            &copy; 2023 LuxeGlow Skincare. All rights reserved.
+            &copy; 2025 Ikeya Naturals. Handcrafted in Nigeria with love.
         </div>
     </footer>
     
@@ -1125,15 +1345,12 @@
         });
         
         // Buy button functionality
-        const buyButtons = document.querySelectorAll('.buy-btn');
+        const buyNowButtons = document.querySelectorAll('.buy-now-btn');
         
-        buyButtons.forEach(button => {
-            // Remove the click event if it's an anchor tag
-            if (button.tagName !== 'A') {
-                button.addEventListener('click', () => {
-                    window.location.href = 'checkout.html';
-                });
-            }
+        buyNowButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                window.location.href = 'checkout.html';
+            });
         });
         
         // FAQ accordion
@@ -1143,15 +1360,34 @@
             const question = item.querySelector('.faq-question');
             
             question.addEventListener('click', () => {
-                // Close all other items
                 faqItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
                     }
                 });
                 
-                // Toggle current item
                 item.classList.toggle('active');
+            });
+        });
+        
+        // Before-after card animations
+        const baCards = document.querySelectorAll('.ba-card');
+        
+        baCards.forEach((card, index) => {
+            // Initial tilt
+            if(index % 2 === 0) {
+                card.style.transform = 'rotateY(10deg) rotateX(5deg) rotateZ(-2deg)';
+            } else {
+                card.style.transform = 'rotateY(-10deg) rotateX(5deg) rotateZ(2deg)';
+            }
+            
+            // Reset on hover out
+            card.addEventListener('mouseleave', () => {
+                if(index % 2 === 0) {
+                    card.style.transform = 'rotateY(10deg) rotateX(5deg) rotateZ(-2deg)';
+                } else {
+                    card.style.transform = 'rotateY(-10deg) rotateX(5deg) rotateZ(2deg)';
+                }
             });
         });
     </script>

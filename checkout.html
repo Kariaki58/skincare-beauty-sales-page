@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout | LuxeGlow</title>
+    <title>Checkout | Ikeya Naturals</title>
     <style>
         :root {
-            --primary: #D2B48C; /* light brown */
-            --secondary: #000000;
-            --light: #FFFFFF;
+            --primary: #6B8E23; /* olive green */
+            --secondary: #3D2B1F; /* dark brown */
+            --accent: #D2B48C; /* light tan */
+            --light: #FFF8F0; /* creamy white */
             --gray: #f5f5f5;
             --dark-gray: #777;
         }
@@ -40,6 +41,7 @@
             color: var(--secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-family: 'Georgia', serif;
         }
         
         .logo span {
@@ -143,6 +145,7 @@
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
             color: var(--secondary);
+            font-family: 'Georgia', serif;
         }
         
         .form-group {
@@ -177,18 +180,7 @@
         input:focus, select:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(210,180,140,0.2);
-        }
-        
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .checkbox-group input {
-            width: auto;
-            margin-right: 10px;
+            box-shadow: 0 0 0 2px rgba(107,142,35,0.2);
         }
         
         /* Order Summary */
@@ -213,6 +205,7 @@
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
+            font-family: 'Georgia', serif;
         }
         
         .product-item {
@@ -220,6 +213,19 @@
             margin-bottom: 20px;
             padding-bottom: 20px;
             border-bottom: 1px solid #eee;
+            position: relative;
+        }
+        
+        .remove-item {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: #ff4444;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px;
         }
         
         .product-image {
@@ -308,10 +314,12 @@
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         
         .payment-option {
             flex: 1;
+            min-width: 100px;
             border: 1px solid #ddd;
             border-radius: 4px;
             padding: 15px;
@@ -326,7 +334,7 @@
         
         .payment-option.active {
             border-color: var(--primary);
-            background-color: rgba(210,180,140,0.1);
+            background-color: rgba(107,142,35,0.1);
         }
         
         .payment-option img {
@@ -342,7 +350,7 @@
         .pay-btn {
             width: 100%;
             background-color: var(--primary);
-            color: var(--secondary);
+            color: var(--light);
             border: none;
             padding: 16px;
             font-size: 18px;
@@ -356,7 +364,7 @@
         }
         
         .pay-btn:hover {
-            background-color: #c5a06b;
+            background-color: #7ba52b;
             transform: translateY(-2px);
         }
         
@@ -393,6 +401,7 @@
             font-weight: 700;
             margin-bottom: 15px;
             color: var(--light);
+            font-family: 'Georgia', serif;
         }
         
         .footer-logo span {
@@ -415,7 +424,7 @@
         }
         
         .footer-links a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
         
         .copyright {
@@ -423,11 +432,41 @@
             color: #aaa;
             font-size: 12px;
         }
+        
+        /* Empty Cart */
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+            display: none;
+        }
+        
+        .empty-cart p {
+            margin-bottom: 20px;
+        }
+        
+        .continue-shopping {
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .continue-shopping:hover {
+            background-color: #7ba52b;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
-        <div class="logo">Luxe<span>Glow</span></div>
+        <div class="logo">Ikeya<span>Naturals</span></div>
     </header>
     
     <div class="progress-steps">
@@ -451,23 +490,23 @@
             
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="your@email.com">
+                <input type="email" id="email" placeholder="your@email.com" required>
             </div>
             
             <div class="form-row">
                 <div class="form-group">
                     <label for="first-name">First Name</label>
-                    <input type="text" id="first-name" placeholder="First Name">
+                    <input type="text" id="first-name" placeholder="First Name" required>
                 </div>
                 <div class="form-group">
                     <label for="last-name">Last Name</label>
-                    <input type="text" id="last-name" placeholder="Last Name">
+                    <input type="text" id="last-name" placeholder="Last Name" required>
                 </div>
             </div>
             
             <div class="form-group">
                 <label for="address">Address</label>
-                <input type="text" id="address" placeholder="Street Address">
+                <input type="text" id="address" placeholder="Street Address" required>
             </div>
             
             <div class="form-group">
@@ -478,53 +517,29 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="city">City</label>
-                    <input type="text" id="city" placeholder="City">
+                    <input type="text" id="city" placeholder="City" required>
                 </div>
                 <div class="form-group">
-                    <label for="country">Country</label>
-                    <select id="country">
-                        <option value="">Select Country</option>
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="UK">United Kingdom</option>
-                        <option value="AU">Australia</option>
-                        <option value="DE">Germany</option>
-                        <option value="FR">France</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="state">State/Province</label>
-                    <input type="text" id="state" placeholder="State/Province">
-                </div>
-                <div class="form-group">
-                    <label for="zip">ZIP/Postal Code</label>
-                    <input type="text" id="zip" placeholder="ZIP/Postal Code">
+                    <label for="state">State</label>
+                    <input type="text" id="state" placeholder="State" required>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="tel" id="phone" placeholder="Phone Number">
-            </div>
-            
-            <div class="checkbox-group">
-                <input type="checkbox" id="save-info">
-                <label for="save-info">Save this information for next time</label>
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Phone Number" required>
             </div>
             
             <h2 class="form-title" style="margin-top: 40px;">Shipping Method</h2>
             
             <div class="form-group">
-                <div class="checkbox-group" style="margin-bottom: 10px;">
+                <div class="radio-group" style="margin-bottom: 10px;">
                     <input type="radio" id="standard-shipping" name="shipping" checked>
-                    <label for="standard-shipping">Standard Shipping (Free) - 5-7 business days</label>
+                    <label for="standard-shipping">Standard Shipping (₦500) - 3-5 business days</label>
                 </div>
-                <div class="checkbox-group">
+                <div class="radio-group">
                     <input type="radio" id="express-shipping" name="shipping">
-                    <label for="express-shipping">Express Shipping ($9.99) - 2-3 business days</label>
+                    <label for="express-shipping">Express Shipping (₦1,500) - 1-2 business days</label>
                 </div>
             </div>
         </div>
@@ -532,37 +547,57 @@
         <div class="order-summary">
             <h3 class="summary-title">Your Order</h3>
             
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="./image/image-2.jpeg" alt="LuxeGlow Serum">
-                </div>
-                <div class="product-details">
-                    <div class="product-name">LuxeGlow Anti-Aging Serum</div>
-                    <div class="product-price">$89.00</div>
-                    <div class="quantity-selector">
-                        <button class="quantity-btn">-</button>
-                        <input type="text" class="quantity-input" value="1">
-                        <button class="quantity-btn">+</button>
+            <div class="products-container">
+                <div class="product-item" data-product="botanibutter" data-price="2000">
+                    <button class="remove-item" onclick="removeProduct(this)"><i class="fas fa-times"></i></button>
+                    <div class="product-image">
+                        <img src="/image/image-1.png" alt="Ikeya BotaniButter">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-name">Ikeya BotaniButter</div>
+                        <div class="product-price">₦2,000</div>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="updateQuantity(this, -1)">-</button>
+                            <input type="text" class="quantity-input" value="1" onchange="validateQuantity(this)">
+                            <button class="quantity-btn" onclick="updateQuantity(this, 1)">+</button>
+                        </div>
                     </div>
                 </div>
+                
+                <div class="product-item" data-product="herbaloil" data-price="3000">
+                    <button class="remove-item" onclick="removeProduct(this)"><i class="fas fa-times"></i></button>
+                    <div class="product-image">
+                        <img src="/image/image-deng.png" alt="Ikeya Herbal Hair Oil">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-name">Ikeya Herbal Hair Oil</div>
+                        <div class="product-price">₦3,000</div>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="updateQuantity(this, -1)">-</button>
+                            <input type="text" class="quantity-input" value="1" onchange="validateQuantity(this)">
+                            <button class="quantity-btn" onclick="updateQuantity(this, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="empty-cart">
+                <p>Your cart is empty</p>
+                <a href="index.html" class="continue-shopping">Continue Shopping</a>
             </div>
             
             <div class="summary-totals">
                 <div class="total-row">
                     <span>Subtotal</span>
-                    <span>$89.00</span>
+                    <span id="subtotal">₦5,000</span>
                 </div>
                 <div class="total-row">
                     <span>Shipping</span>
-                    <span>Free</span>
-                </div>
-                <div class="total-row">
-                    <span>Tax</span>
-                    <span>$7.12</span>
+                    <span id="shipping">₦500</span>
                 </div>
                 <div class="total-row">
                     <span>Total</span>
-                    <span>$96.12</span>
+                    <span id="total">₦5,500</span>
                 </div>
             </div>
             
@@ -570,22 +605,13 @@
                 <h4 class="payment-title">Payment Method</h4>
                 
                 <div class="payment-options">
-                    <div class="payment-option active">
-                        <img src="./icons/card.svg" alt="Credit Card">
-                        <div class="payment-option-name">Card</div>
-                    </div>
-                    <div class="payment-option">
-                        
-                        <img src="./icons/paypal.svg" alt="PayPal">
-                        <div class="payment-option-name">PayPal</div>
-                    </div>
-                    <div class="payment-option">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="Apple Pay">
-                        <div class="payment-option-name">Apple Pay</div>
+                    <div class="payment-option" data-method="paystack">
+                        <img src="/image/Paystack.webp" alt="Paystack" style="height: 25px;">
+                        <div class="payment-option-name">Paystack</div>
                     </div>
                 </div>
                 
-                <button class="pay-btn">Pay Now</button>
+                <button class="pay-btn" onclick="processPayment()">Pay Now</button>
                 
                 <div class="secure-checkout">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
@@ -598,95 +624,249 @@
     </div>
     
     <footer>
-        <div class="footer-logo">Luxe<span>Glow</span></div>
-        <div class="footer-links">
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-            <a href="#">Shipping Policy</a>
-            <a href="#">Returns</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-        </div>
+        <div class="footer-logo">Ikeya<span>Naturals</span></div>
         <div class="copyright">
-            &copy; 2023 LuxeGlow Skincare. All rights reserved.
+            &copy; 2023 Ikeya Naturals. Handcrafted in Nigeria with love.
         </div>
     </footer>
     
+    <script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
-        // Quantity selector
-        const quantityInput = document.querySelector('.quantity-input');
-        const minusBtn = document.querySelector('.quantity-btn:first-child');
-        const plusBtn = document.querySelector('.quantity-btn:last-child');
+        // Product data
+        const products = {
+            botanibutter: { price: 2000, quantity: 1 },
+            herbaloil: { price: 3000, quantity: 1 }
+        };
         
-        minusBtn.addEventListener('click', () => {
-            let value = parseInt(quantityInput.value);
-            if (value > 1) {
-                quantityInput.value = value - 1;
-                updateTotals();
-            }
-        });
+        let shippingCost = 500;
+        let paymentMethod = 'card';
         
-        plusBtn.addEventListener('click', () => {
-            let value = parseInt(quantityInput.value);
-            quantityInput.value = value + 1;
+        // Update quantity functions
+        function updateQuantity(button, change) {
+            const input = button.parentElement.querySelector('.quantity-input');
+            let newValue = parseInt(input.value) + change;
+            if (newValue < 1) newValue = 1;
+            input.value = newValue;
+            
+            const productItem = button.closest('.product-item');
+            const productId = productItem.dataset.product;
+            products[productId].quantity = newValue;
+            
             updateTotals();
-        });
+        }
         
-        quantityInput.addEventListener('change', () => {
-            let value = parseInt(quantityInput.value);
+        function validateQuantity(input) {
+            let value = parseInt(input.value);
             if (isNaN(value) || value < 1) {
-                quantityInput.value = 1;
+                input.value = 1;
             }
+            
+            const productItem = input.closest('.product-item');
+            const productId = productItem.dataset.product;
+            products[productId].quantity = parseInt(input.value);
+            
             updateTotals();
-        });
+        }
+        
+        // Remove product function
+        function removeProduct(button) {
+            const productItem = button.closest('.product-item');
+            const productId = productItem.dataset.product;
+            
+            delete products[productId];
+            productItem.remove();
+            
+            updateTotals();
+            
+            // Check if all products are removed
+            if (Object.keys(products).length === 0) {
+                document.querySelector('.products-container').style.display = 'none';
+                document.querySelector('.summary-totals').style.display = 'none';
+                document.querySelector('.payment-methods').style.display = 'none';
+                document.querySelector('.empty-cart').style.display = 'block';
+                
+                // Redirect to index.html after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }
+        }
         
         // Update order totals
         function updateTotals() {
-            const quantity = parseInt(quantityInput.value);
-            const subtotal = (89 * quantity).toFixed(2);
-            const tax = (89 * quantity * 0.08).toFixed(2);
-            const total = (parseFloat(subtotal) + parseFloat(tax)).toFixed(2);
+            let subtotal = 0;
             
-            document.querySelector('.summary-totals .total-row:nth-child(1) span:last-child').textContent = `$${subtotal}`;
-            document.querySelector('.summary-totals .total-row:nth-child(3) span:last-child').textContent = `$${tax}`;
-            document.querySelector('.summary-totals .total-row:last-child span:last-child').textContent = `$${total}`;
+            for (const productId in products) {
+                subtotal += products[productId].price * products[productId].quantity;
+            }
+            
+            // Update shipping cost based on selection
+            const expressShipping = document.getElementById('express-shipping').checked;
+            shippingCost = expressShipping ? 1500 : 500;
+            
+            const total = subtotal + shippingCost;
+            
+            document.getElementById('subtotal').textContent = `₦${subtotal.toLocaleString()}`;
+            document.getElementById('shipping').textContent = `₦${shippingCost.toLocaleString()}`;
+            document.getElementById('total').textContent = `₦${total.toLocaleString()}`;
         }
         
-        // Payment method selection
-        const paymentOptions = document.querySelectorAll('.payment-option');
-        
-        paymentOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                paymentOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-            });
-        });
-        
         // Shipping method selection
-        const shippingOptions = document.querySelectorAll('input[name="shipping"]');
+        document.querySelectorAll('input[name="shipping"]').forEach(option => {
+            option.addEventListener('change', updateTotals);
+        });
         
-        shippingOptions.forEach(option => {
-            option.addEventListener('change', () => {
-                const shippingCost = option.id === 'express-shipping' ? 9.99 : 0;
-                const shippingText = option.id === 'express-shipping' ? '$9.99' : 'Free';
-                
-                document.querySelector('.summary-totals .total-row:nth-child(2) span:last-child').textContent = shippingText;
-                
-                const subtotal = parseFloat(document.querySelector('.summary-totals .total-row:nth-child(1) span:last-child').textContent.replace('$', ''));
-                const tax = parseFloat(document.querySelector('.summary-totals .total-row:nth-child(3) span:last-child').textContent.replace('$', ''));
-                const total = (subtotal + tax + shippingCost).toFixed(2);
-                
-                document.querySelector('.summary-totals .total-row:last-child span:last-child').textContent = `$${total}`;
+        // Payment method selection
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.payment-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                option.classList.add('active');
+                paymentMethod = option.dataset.method;
             });
         });
         
-        // Pay button
-        const payBtn = document.querySelector('.pay-btn');
+        // Process payment
+        function processPayment() {
+            // Validate form
+            const requiredFields = ['email', 'first-name', 'last-name', 'address', 'city', 'state', 'phone'];
+            let isValid = true;
+            
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ff4444';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#ddd';
+                }
+            });
+            
+            if (!isValid) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            if (Object.keys(products).length === 0) {
+                alert('Your cart is empty.');
+                return;
+            }
+            
+            // Calculate total
+            let subtotal = 0;
+            for (const productId in products) {
+                subtotal += products[productId].price * products[productId].quantity;
+            }
+            const total = subtotal + shippingCost;
+            
+            // Collect customer data
+            const customerData = {
+                email: document.getElementById('email').value,
+                firstName: document.getElementById('first-name').value,
+                lastName: document.getElementById('last-name').value,
+                address: document.getElementById('address').value,
+                apartment: document.getElementById('apartment').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                phone: document.getElementById('phone').value,
+                shippingMethod: document.querySelector('input[name="shipping"]:checked').nextElementSibling.textContent,
+                products: {...products},
+                subtotal: subtotal,
+                shipping: shippingCost,
+                total: total
+            };
+            
+            // Process payment based on selected method
+            if (paymentMethod === 'paystack') {
+                processPaystackPayment(customerData);
+            } else {
+                // For card payment (simulated)
+                simulateCardPayment(customerData);
+            }
+        }
         
-        payBtn.addEventListener('click', () => {
-            // In a real implementation, this would process the payment
-            alert('Payment processed successfully! Thank you for your purchase.');
-        });
+        // Paystack payment processing
+        // In checkout.html, replace the processPaystackPayment and simulateCardPayment functions
+
+function processPaystackPayment(customerData) {
+    const handler = PaystackPop.setup({
+        key: 'pk_test_fe3c7c857fbdf1e647efae4259d89937f3914562', // Replace with your Paystack public key
+        email: customerData.email,
+        amount: customerData.total * 100, // Paystack amount is in kobo
+        currency: 'NGN',
+        ref: 'IK' + Math.floor(Math.random() * 1000000000 + 1),
+        callback: function(response) {
+            // Payment successful
+            customerData.paymentReference = response.reference;
+            logOrderAndSendEmail(customerData);
+            alert('Payment successful! Thank you for your purchase.');
+            
+            // Format address for thank-you page
+            const formattedAddress = [
+                customerData.address,
+                customerData.apartment ? customerData.apartment : '',
+                `${customerData.city}, ${customerData.state}`,
+                'Nigeria'
+            ].filter(Boolean).join('<br>');
+
+            // Redirect to thank-you page with parameters
+            const params = new URLSearchParams({
+                total: `₦${customerData.total.toLocaleString()}`,
+                payment: paymentMethod === 'paystack' ? 'Paystack' : 'Card',
+                address: formattedAddress,
+                orderNumber: response.reference
+            });
+            window.location.href = `thank-you.html?${params.toString()}`;
+        },
+        onClose: function() {
+            alert('Payment window closed');
+        }
+    });
+    handler.openIframe();
+}
+
+        function simulateCardPayment(customerData) {
+            // Simulate card payment
+            alert('Card payment processed successfully! Thank you for your purchase.');
+            logOrderAndSendEmail(customerData);
+            
+            // Format address for thank-you page
+            const formattedAddress = [
+                customerData.address,
+                customerData.apartment ? customerData.apartment : '',
+                `${customerData.city}, ${customerData.state}`,
+                'Nigeria'
+            ].filter(Boolean).join('<br>');
+
+            // Generate a mock order number
+            const mockOrderNumber = 'IK' + Math.floor(Math.random() * 1000000000 + 1);
+
+            // Redirect to thank-you page with parameters
+            const params = new URLSearchParams({
+                total: `₦${customerData.total.toLocaleString()}`,
+                payment: 'Card',
+                address: formattedAddress,
+                orderNumber: mockOrderNumber
+            });
+            window.location.href = `thank-you.html?${params.toString()}`;
+        }
+        // Simulate card payment (for demo purposes)
+        function simulateCardPayment(customerData) {
+            // In a real implementation, this would process the card payment
+            alert('Card payment processed successfully! Thank you for your purchase.');
+            logOrderAndSendEmail(customerData);
+            // Redirect to thank you page
+            window.location.href = 'thank-you.html';
+        }
+        
+        // Log order and send email (simulated)
+        function logOrderAndSendEmail(customerData) {
+            console.log('Order Details:', customerData);
+            // In a real implementation, this would send the data to your backend
+            // which would then send an email to the admin
+            // For demo purposes, we're just logging to console
+        }
     </script>
 </body>
 </html>
