@@ -769,16 +769,17 @@
         // Paystack payment processing
         function processPaystackPayment(customerData) {
             const handler = PaystackPop.setup({
-                key: 'pk_live_a7e48ef08d1bdf092e3aa12efb41d4bac3ff2255', // Replace with your Paystack public key
+                key: 'pk_live_a7e48ef08d1bdf092e3aa12efb41d4bac3ff2255',
                 email: customerData.email,
                 amount: customerData.total * 100, // Paystack amount is in kobo
                 currency: 'NGN',
                 ref: 'IK' + Math.floor(Math.random() * 1000000000 + 1),
                 callback: function(response) {
                     customerData.paymentReference = response.reference;
-                    logOrderAndSendEmail(customerData);
+                    logOrderAndSendEmail(customerData)
+
                     alert('Payment successful! Thank you for your purchase.');
-                    
+
                     const formattedAddress = [
                         customerData.address,
                         customerData.apartment ? customerData.apartment : '',
@@ -803,40 +804,34 @@
         
         // Log order and send email (simulated)
         function logOrderAndSendEmail(customerData) {
-            
-            emailjs.send('service_s413k7c', 'template_wzlbfha', {
-                name: customerData.name,
-                to_name: "Favour",
-                from_name: customerData.firstName,
-                email: "mordecaifavour316@gmail.com",
-                subject: "You got a new Order",
+            const orderItems = Object.entries(customerData.products)
+                .map(([product, details]) => 
+                    `${product} (₦${details.price} × ${details.quantity}) = ₦${details.price * details.quantity}`
+                )
+                .join('\n');
+
+            const emailParams = {
+                to_name: "Ikeya Naturals Team",
+                from_name: `${customerData.firstName} ${customerData.lastName}`,
                 message: `
-                    Customer Details:
-                    - Email: ${customerData.email}
-                    - Phone: ${customerData.phone}
-                    - Address: ${customerData.address}, ${customerData.apartment}
-                    - City: ${customerData.city}
-                    - State: ${customerData.state}
+                    **NEW ORDER RECEIVED**\n
+                    **Order ID:** ${customerData.paymentReference}\n
+                    **Customer:** ${customerData.firstName} ${customerData.lastName}\n
+                    **Email:** ${customerData.email}\n
+                    **Phone:** ${customerData.phone}\n
+                    **Shipping Address:**\n${customerData.address}\n${customerData.city}, ${customerData.state}\n
+                    **Items:**\n${orderItems}\n
+                    **Subtotal:** ₦${customerData.subtotal.toLocaleString()}\n
+                    **Shipping:** ₦${customerData.shipping.toLocaleString()}\n
+                    **Total:** ₦${customerData.total.toLocaleString()}\n\n
+                    **Payment Method:** Paystack (${customerData.paymentReference})`,
+                reply_to: customerData.email
+            };
 
-                    Shipping Method: ${customerData.shippingMethod}
-
-                    Order Summary:
-                    ${Object.entries(customerData.products).map(([product, details]) => 
-                        `- ${product}: ₦${details.price} x ${details.quantity} = ₦${details.price * details.quantity}`
-                    ).join('\n')}
-
-                    - Subtotal: ₦${customerData.subtotal}
-                    - Shipping: ₦${customerData.shipping}
-                    - Total: ₦${customerData.total}
-
-                    Payment Reference: ${customerData.paymentReference}
-                `
-            })
-            .then(response => {
-                console.log('Email sent!', response.status, response.text);
-            }, error => {
-                console.error('Failed to send email:', error);
-            });
+            // Replace "service_yourActualServiceId" with your real Service ID
+            emailjs.send("service_o0t04sn", "template_wzlbfha", emailParams)
+                .then(response => console.log('Email sent!', response))
+                .catch(error => console.error('Email failed:', error));
         }
     </script>
 </body>
