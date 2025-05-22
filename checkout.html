@@ -510,11 +510,11 @@
             <div class="form-group">
                 <div class="radio-group" style="margin-bottom: 10px;">
                     <input type="radio" id="standard-shipping" name="shipping" checked>
-                    <label for="standard-shipping">Around Lagos (₦2,500) - 1-2 after purchase</label>
+                    <label for="standard-shipping">Around Lagos (₦2,500) - 1-2 business days</label>
                 </div>
                 <div class="radio-group">
                     <input type="radio" id="express-shipping" name="shipping">
-                    <label for="express-shipping">Outside Lagos (₦4,000) - 2-3 after purchase</label>
+                    <label for="express-shipping">Outside Lagos (₦4,000) - 2-3 business days</label>
                 </div>
             </div>
         </div>
@@ -572,7 +572,7 @@
                 </div>
                 <div class="total-row">
                     <span>Total</span>
-                    <span id="total">₦5,500</span>
+                    <span id="total">₦7,500</span>
                 </div>
             </div>
             
@@ -694,15 +694,18 @@
         function updateTotals() {
             let subtotal = 0;
             
+            // Calculate subtotal from products
             for (const productId in products) {
                 subtotal += products[productId].price * products[productId].quantity;
             }
             
+            // Get selected shipping method
             const expressShipping = document.getElementById('express-shipping').checked;
-            shippingCost = expressShipping ? 4000 : 2500;;
+            shippingCost = expressShipping ? 4000 : 2500; // ₦4,000 for outside Lagos, ₦2,500 for Lagos
             
             const total = subtotal + shippingCost;
             
+            // Update displayed totals
             document.getElementById('subtotal').textContent = `₦${subtotal.toLocaleString()}`;
             document.getElementById('shipping').textContent = `₦${shippingCost.toLocaleString()}`;
             document.getElementById('total').textContent = `₦${total.toLocaleString()}`;
