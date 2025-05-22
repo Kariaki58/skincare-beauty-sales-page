@@ -510,11 +510,11 @@
             <div class="form-group">
                 <div class="radio-group" style="margin-bottom: 10px;">
                     <input type="radio" id="standard-shipping" name="shipping" checked>
-                    <label for="standard-shipping">Standard Shipping (₦500) - 3-5 business days</label>
+                    <label for="standard-shipping">Around Lagos (₦2,500) - 1-2 after purchase</label>
                 </div>
                 <div class="radio-group">
                     <input type="radio" id="express-shipping" name="shipping">
-                    <label for="express-shipping">Express Shipping (₦1,500) - 1-2 business days</label>
+                    <label for="express-shipping">Outside Lagos (₦4,000) - 2-3 after purchase</label>
                 </div>
             </div>
         </div>
@@ -568,7 +568,7 @@
                 </div>
                 <div class="total-row">
                     <span>Shipping</span>
-                    <span id="shipping">₦500</span>
+                    <span id="shipping">₦2,500</span>
                 </div>
                 <div class="total-row">
                     <span>Total</span>
@@ -627,7 +627,7 @@
             herbaloil: { price: 3000, quantity: 1 }
         };
         
-        let shippingCost = 500;
+        let shippingCost = 2500;
         const paymentMethod = 'paystack'; // Default to Paystack
         
         // Update quantity functions
@@ -699,7 +699,7 @@
             }
             
             const expressShipping = document.getElementById('express-shipping').checked;
-            shippingCost = expressShipping ? 1500 : 500;
+            shippingCost = expressShipping ? 4000 : 2500;;
             
             const total = subtotal + shippingCost;
             
